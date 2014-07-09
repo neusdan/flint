@@ -3013,7 +3013,7 @@ uint getBogusComparisons(Token[] v,
         lhsExprHead ~= lhs.length;
         ++lhsLParenCount;
       } else if (tox.front.type_ == tk!")") {
-        while (lhsExprHead.back != 0 && lhs[lhsExprHead.back - 1 - 1] != '(') {
+        while (lhsExprHead.back != 0 && lhs[lhsExprHead.back - cast(uint)1 - cast(uint)1] != '(') {
           lhsExprHead.popBack;
         }
 
@@ -3051,7 +3051,7 @@ uint getBogusComparisons(Token[] v,
         !tox.front.type_.among(tk!"<", tk!">") &&
         // Ignore expressions without special tokens
         !specialTokenHead.empty && lhsExprHead.back < specialTokenHead.back &&
-        lhs[lhsExprHead.back .. lhs.length - tox.front.value.length - 1] ==
+        lhs[lhsExprHead.back .. lhs.length - tox.front.value.length - cast(uint)1] ==
           rhs) {
       lintWarning(tox.front,
                   text("A comparison between identical expressions, ",
